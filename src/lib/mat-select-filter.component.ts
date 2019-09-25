@@ -12,7 +12,7 @@ import {
   template: `
   <form [formGroup]="searchForm" class="mat-filter" [ngStyle]="{'background-color': color ? color : 'white'}">
   <div>
-  <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (keydown)="handleKeydown($event)">
+  <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (blur)="checkOptions()" (keydown)="handleKeydown($event)">
     <mat-spinner *ngIf="localSpinner" class="spinner" diameter="16"></mat-spinner>
   </div>
   <div *ngIf="noResults"
@@ -104,5 +104,8 @@ export class MatSelectFilterComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.filteredReturn.emit(this.array);
+  }
+  checkOptions() {
+    console.log('sdsd');
   }
 }
